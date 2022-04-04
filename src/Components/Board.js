@@ -39,7 +39,7 @@ class Board extends React.Component {
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
         board.push(
-          <StyledField key={`${i}-${j}`} color={(i + j) % 2} data-x={i} data-y={j}>
+          <StyledField key={`${i}-${j}`} color={(i + j) % 2}>
             <CheesPiece fieldX={i} fieldY={j} />
           </StyledField>,
         );

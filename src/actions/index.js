@@ -1,36 +1,36 @@
-export const changePossibleMoves = (item) =>{
+export const changePossibleMoves = (item) => {
   return {
     type: "CHANGE_POSSIBLE_MOVES",
     payload: {
       item,
-    }
-  }
-}
+    },
+  };
+};
 
-export const changePickedPiece= (item) =>{
+export const changePickedPiece = (item) => {
   return {
     type: "CHANGE_PICKED_PIECE",
     payload: {
       item,
-    }
-  }
-}
+    },
+  };
+};
 
-export const movePiece = (board,allPieces) =>{
+export const movePiece = (board, allPieces) => {
   return {
     type: "MOVE_PIECE",
     payload: {
       board,
-      allPieces
-    }
-  }
-}
+      allPieces,
+    },
+  };
+};
 
-export const changePossibleAttack = (item) =>{
+export const changePossibleAttack = (item) => {
   return {
     type: "CHANGE_POSSIBLE_ATTACK",
     payload: {
       item,
-    }
-  }
-}
+    },
+  };
+};

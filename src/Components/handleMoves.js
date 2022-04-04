@@ -1,3 +1,5 @@
+import PropTypes, { arrayOf } from "prop-types";
+
 export const handleMovePawn = (piece, board) => {
   let possibleAttack = [];
   let possibleMoves = [];
@@ -302,4 +304,34 @@ const deleteNegative = (possibleMoves) => {
 
 const handlePromotionChess = () => {
   console.log("promotion !");
+};
+
+[
+  checkDiagonalUp,
+  checkDiagonalDown,
+  checkHorizontally,
+  checkVertically,
+  handleMoveBishop,
+  handleMoveKing,
+  handleMoveKnight,
+  handleMovePawn,
+  handleMoveQueen,
+  handleMoveRook,
+].propTypes = {
+  board: PropTypes.arrayOf(arrayOf(PropTypes.number)).isRequired,
+  allPieces: PropTypes.shape({
+    typeOfPiece: PropTypes.string.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    type: PropTypes.number.isRequired,
+  }),
+};
+
+deleteNegative.propTypes = {
+  possibleMoves: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
+  ),
 };

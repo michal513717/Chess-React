@@ -21,6 +21,6 @@ module.exports = {
     ],
     "rules": {
         "prettier/prettier": "warn",
-        'react/prop-types': [1]
+        'react/prop-types': [0]
     }
 }

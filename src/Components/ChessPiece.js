@@ -1,3 +1,4 @@
+import PropTypes, { arrayOf } from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -96,10 +97,10 @@ class ChessPiece extends React.Component {
   };
 
   handleCheckKing = () => {
-    const { board, currentPickedPiece } = this.props;
+    const { board, currentPickedPiece, allPieces } = this.props;
     let allEnemyPossibleAttack = [];
     let positionOfKing = {};
-    this.props.allPieces.forEach((item) => {
+    allPieces.forEach((item) => {
       if (item.type === currentPickedPiece[0].type) {
         let object = handleActions[item.typeOfPiece.split("_")[0]](item, board);
         allEnemyPossibleAttack.push(...object.possibleAttack, ...object.possibleMoves);
@@ -205,5 +206,50 @@ const mapDispatchToProps = (dispatch) => ({
   changePickedPiece: (pickedPiece) => dispatch(changePickedPieceAction(pickedPiece)),
   changePossibleAttack: (possibleAttack) => dispatch(changePossibleAttackAction(possibleAttack)),
 });
+
+ChessPiece.propTypes = {
+  board: PropTypes.arrayOf(arrayOf(PropTypes.number)).isRequired,
+  turnPlayer: PropTypes.number.isRequired,
+
+  allPieces: PropTypes.arrayOf(
+    PropTypes.shape({
+      typeOfPiece: PropTypes.string.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      type: PropTypes.number.isRequired,
+    }),
+  ),
+
+  possibleAttack: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
+  ),
+
+  possibleMoves: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    }),
+  ),
+
+  currentPickedPiece: PropTypes.arrayOf(
+    PropTypes.shape({
+      typeOfPiece: PropTypes.string.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      type: PropTypes.number.isRequired,
+    }),
+  ),
+
+  changePossibleMoves: PropTypes.func,
+  movePiece: PropTypes.func,
+  changePickedPiece: PropTypes.func,
+  changePossibleAttack: PropTypes.func,
+
+  fieldX: PropTypes.number.isRequired,
+  fieldY: PropTypes.number.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChessPiece);
